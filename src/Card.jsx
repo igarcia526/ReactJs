@@ -1,18 +1,34 @@
 import React, { useState } from 'react';
+import StringInput from './StringInput';
 
-const Card = ({ name, size }) => {
+
+/* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
+const Card = ({ name, setBack }) => {
   //const [inputString, setInputString] = useState('');
+  const [nameP, setnameP] = useState(name);
+  const [cardShow, setcardShow] = useState(true);
 
-  console.log("card is called" + typeof name);
+  console.log("cardShow " + cardShow);
+  //setcardShow(true);
 
+  function closeCard() {
+    setcardShow(false);
+    setBack();
+  }
+  
   return (
-  <div className="card" style={cardStyle}>
-  <div className="card-body">
-    <h5 className="card-title">Card title</h5>
-    <p className="card-text">Your Hero is {name}</p>
-    <a href="#" className="btn btn-primary">Go somewhere</a>
-  </div>
- </div>
+        cardShow ? (
+            
+            <div className="card" style={cardStyle}>
+            <div className="card-body">
+                <h5 className="card-title">Card title</h5>
+
+                <p className="card-text">{!nameP ? 'Fill out the name first' : 'Your Hero is ' + nameP}</p>
+                <button onClick={closeCard}>{!nameP ? 'Try Again' : 'Close Card'}</button>
+            </div>
+            </div>
+        ) : null
+    
   );
 };
 
