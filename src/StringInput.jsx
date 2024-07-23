@@ -5,17 +5,22 @@ const StringInput = () => {
   const [inputString, setInputString] = useState('');
   const [showCard, setShowCard] = useState(false);
 
+  function handleButtonClick() {
+    setShowCard(true);
+    console.log("showCard " + showCard);
+  }
+
+  function setBackToFalse() {
+    setShowCard(false);
+    console.log("showCard " + showCard);
+  }
 
   const handleChange = (event) => {
     setInputString(event.target.value);
-    console.log("setInputString" + typeof setInputString);
   };
 
-  function handleButtonClick() {
-    setShowCard(!showCard);
-  }
-
   return (
+
     <div>
       <input
         type="text"
@@ -23,11 +28,8 @@ const StringInput = () => {
         onChange={handleChange}
         placeholder="Hero name"
       />
-      <p>Input: {inputString}</p>
-      <button onClick={handleButtonClick}>
-        {showCard ? 'Hide' : 'Show'} Card
-      </button>
-      {showCard && <Card  name= {inputString} />}
+      {!showCard ? <button onClick={handleButtonClick}>Submit</button> : null}
+      {showCard ? <Card  key={showCard} name = {inputString} setBack = {setBackToFalse}/> : null}
     </div>
       
   );
