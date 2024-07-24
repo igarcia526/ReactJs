@@ -2,6 +2,7 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import StringInput from './StringInput';
+import RandomUser from './RandomUser';
 import './App.css'
 import 'bootstrap/dist/css/bootstrap.css';
 
@@ -17,6 +18,7 @@ function App() {
 
     <div className='main'>
       <StringInput />
+      <RandomUser />
     </div>
 
     </>
