@@ -1,8 +1,8 @@
 .card-body {
     display: grid;
-    grid-template-columns: repeat(4, 200px);
-    grid-template-rows: repeat(3,100px);
-    width:860px;
+    grid-template-columns: repeat(4, 25%);
+    grid-template-rows: repeat(3, 30%);
+    width:100%;
     margin: auto;
 }
 
@@ -22,10 +22,11 @@
 
 .card {
     padding: 2em;
-    width: 928px;
+    width: 80%;
+    margin: auto;
   }
 
   .pathy {
-    width: 60%;
+    width: 40%;
     height: 100%;
   }
