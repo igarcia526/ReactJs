@@ -1,0 +1,12 @@
+.flex-container{
+    display:grid;
+    row-gap: 1.5rem;
+    grid-template-columns: 2fr 1fr;
+
+    padding-block: 2rem;
+    margin-inline: auto;
+ }
+
+ .input-hero{
+    margin-right: 1rem;
+ }
