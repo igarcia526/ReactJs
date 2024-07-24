@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
-import StringInput from './StringInput';
-
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 const Card = ({ name, setBack }) => {
-  //const [inputString, setInputString] = useState('');
   const [nameP, setnameP] = useState(name);
   const [cardShow, setcardShow] = useState(true);
 
-  console.log("cardShow " + cardShow);
-  //setcardShow(true);
+  let nancyObj = {
+    name : 'Nancy',
+    job : 'School Admin',
+    salary : 150000
+  }
 
   function closeCard() {
     setcardShow(false);
@@ -17,13 +17,18 @@ const Card = ({ name, setBack }) => {
   }
   
   return (
-        cardShow ? (
-            
+        cardShow ? (          
             <div className="card" style={cardStyle}>
             <div className="card-body">
-                <h5 className="card-title">Card title</h5>
-
+                <h5 className="card-title">{nameP}</h5>
                 <p className="card-text">{!nameP ? 'Fill out the name first' : 'Your Hero is ' + nameP}</p>
+                {nameP ?
+                <>
+                <p>Job: {nameP == 'Nancy' ? nancyObj.job : 'Unemployed'}</p>
+                <p>Salary: {nameP == 'Nancy' ? nancyObj.salary : 0}</p> 
+                </> :
+                null
+                }
                 <button onClick={closeCard}>{!nameP ? 'Try Again' : 'Close Card'}</button>
             </div>
             </div>

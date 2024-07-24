@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import Card from './Card';
+import './StringInput.css'
 
 const StringInput = () => {
   const [inputString, setInputString] = useState('');
@@ -7,12 +8,10 @@ const StringInput = () => {
 
   function handleButtonClick() {
     setShowCard(true);
-    console.log("showCard " + showCard);
   }
 
   function setBackToFalse() {
     setShowCard(false);
-    console.log("showCard " + showCard);
   }
 
   const handleChange = (event) => {
@@ -22,13 +21,16 @@ const StringInput = () => {
   return (
 
     <div>
+      <div className="flex-container">
       <input
         type="text"
         value={inputString}
         onChange={handleChange}
         placeholder="Hero name"
+        className="input-hero"
       />
-      {!showCard ? <button onClick={handleButtonClick}>Submit</button> : null}
+      {!showCard ? <button onClick={handleButtonClick}>Create Hero</button> : null}
+      </div>
       {showCard ? <Card  key={showCard} name = {inputString} setBack = {setBackToFalse}/> : null}
     </div>
       
