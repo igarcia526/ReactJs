@@ -1,5 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import './RandomUser.css';
+
+
 
 const RandomUser = () => {
   const [user, setUser] = useState(null);
@@ -11,7 +14,7 @@ const RandomUser = () => {
         //setLoading(false);
       })
       .catch(error => {
-        setError(error);
+            (error);
         //etLoading(false);
       });
   }
