@@ -20,7 +20,7 @@ const StringInput = () => {
 
   return (
 
-    <div>
+    <>
       <div className="flex-container">
       <input
         type="text"
@@ -32,7 +32,7 @@ const StringInput = () => {
       {!showCard ? <button onClick={handleButtonClick}>Create Hero</button> : null}
       </div>
       {showCard ? <Card  key={showCard} name = {inputString} setBack = {setBackToFalse}/> : null}
-    </div>
+    </>
       
   );
 };
