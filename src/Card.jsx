@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import './Card.css'
+import pathyImage from './assets/pathy.png'
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
 const Card = ({ name, setBack }) => {
@@ -18,9 +20,13 @@ const Card = ({ name, setBack }) => {
   
   return (
         cardShow ? (          
-            <div className="card" style={cardStyle}>
+            <div className="card" >
             <div className="card-body">
                 <h5 className="card-title">{nameP}</h5>
+                <div className="card-image">
+                <img src={pathyImage} className="pathy" />
+                </div>
+                <div className="card-hero-info">
                 <p className="card-text">{!nameP ? 'Fill out the name first' : 'Your Hero is ' + nameP}</p>
                 {nameP ?
                 <>
@@ -30,20 +36,12 @@ const Card = ({ name, setBack }) => {
                 null
                 }
                 <button onClick={closeCard}>{!nameP ? 'Try Again' : 'Close Card'}</button>
+                </div>
             </div>
             </div>
         ) : null
     
   );
 };
-
-const cardStyle = {
-    border: '1px solid #ccc',
-    padding: '16px',
-    borderRadius: '8px',
-    boxShadow: '2px 2px 12px rgba(0, 0, 0, 0.1)',
-    width: '300px',
-    margin: '16px auto',
-  };
 
 export default Card;
