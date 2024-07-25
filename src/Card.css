@@ -22,11 +22,11 @@
 
 .card {
     padding: 2em;
-    width: 50%;
+    width: 100%;
     margin: auto;
   }
 
   .pathy {
-    width: 50%;
-    height: 120%;
+    width: 100%;
+    height: 100%;
   }

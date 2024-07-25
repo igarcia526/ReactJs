@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import './Card.css'
 import pathyImage from './assets/pathy.png'
 
+
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-const Card = ({ name, setBack }) => {
+const Card = ({ name, setBack, userData }) => {
   const [nameP, setnameP] = useState(name);
   const [cardShow, setcardShow] = useState(true);
 
@@ -22,12 +23,11 @@ const Card = ({ name, setBack }) => {
         cardShow ? (          
             <div className="card" >
             <div className="card-body">
-                <h5 className="card-title">{nameP}</h5>
+                <h5 className="card-title">{ nameP+ ' ' + userData.name.last}</h5>
                 <div className="card-image">
-                <img src={pathyImage} className="pathy" />
+                <img src={userData.picture.large} className="pathy" alt='image of pathfinder from Apex Legends'/>
                 </div>
                 <div className="card-hero-info">
-                <p className="card-text">{!nameP ? 'Fill out the name first' : 'Your Hero is ' + nameP}</p>
                 {nameP ?
                 <>
                 <p>Job: {nameP == 'Nancy' ? nancyObj.job : 'Unemployed'}</p>

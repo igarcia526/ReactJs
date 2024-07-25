@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import Card from './Card';
 import './StringInput.css'
+import axios from 'axios';
 
 const StringInput = () => {
   const [inputString, setInputString] = useState('');
@@ -16,7 +17,24 @@ const StringInput = () => {
 
   const handleChange = (event) => {
     setInputString(event.target.value);
+    callApi(showCard);
   };
+
+  const [user, setUser] = useState(null);
+  
+  function callApi(cardOpen) {
+    if(!cardOpen) {
+      axios.get('https://randomuser.me/api')
+        .then(response => {
+          setUser(response.data.results[0]);
+          //setLoading(false);
+        })
+        .catch(error => {
+              (error);
+          //etLoading(false);
+        });
+    }
+  }
 
   return (
 
@@ -26,12 +44,12 @@ const StringInput = () => {
         type="text"
         value={inputString}
         onChange={handleChange}
-        placeholder="Hero name"
+        placeholder="Enter a name"
         className="input-hero"
       />
-      {!showCard ? <button onClick={handleButtonClick}>Create Hero</button> : null}
+      {!showCard ? <button onClick={handleButtonClick} disabled={!inputString}>Search</button> : null}
       </div>
-      {showCard ? <Card  key={showCard} name = {inputString} setBack = {setBackToFalse}/> : null}
+      {showCard ? <Card  key={showCard} name = {inputString} setBack = {setBackToFalse} userData = {user}/> : null}
     </>
       
   );
