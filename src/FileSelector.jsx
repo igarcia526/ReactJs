@@ -20,12 +20,12 @@ const FileUpload = () => {
   const [uploading, setUploading] = useState(false);
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState('');
-  const [isVisible, setIsVisible] = useState(false); // New state to track visibility
-  const [downloadLink, setDownloadLink] = useState(''); // New state to store the download link
+  const [isVisible, setIsVisible] = useState(false);
+  const [downloadLink, setDownloadLink] = useState('');
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0]);
-    setProgress(0);  // Reset progress when selecting a new file
+    setProgress(0);
   };
 
   const uploadFile = async () => {
@@ -42,11 +42,10 @@ const FileUpload = () => {
       Key: selectedFile.name,
       Body: selectedFile,
       ContentType: selectedFile.type,
-      ACL: 'public-read', // Add this line to make the file publicly accessible
+      ACL: 'public-read',
     };
 
     try {
-      // Generate a presigned URL using AWS SDK v3 and use axios for upload to track progress
       const presignedUrl = await getPresignedUrlForUpload(params);
       
       await axios.put(presignedUrl, selectedFile, {
@@ -55,15 +54,13 @@ const FileUpload = () => {
         },
         onUploadProgress: (progressEvent) => {
           const percentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
-          setProgress(percentage); // Update progress bar based on the percentage
+          setProgress(percentage);
         },
       });
       
       const fileUrl = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${selectedFile.name}`;
-      setDownloadLink(fileUrl); // Set the download link
+      setDownloadLink(fileUrl);
       setMessage(`File uploaded successfully: ${selectedFile.name}`);
-      
-      // Close the component after successful upload
       
     } catch (err) {
       console.error('Error uploading file:', err);
@@ -73,7 +70,6 @@ const FileUpload = () => {
     setUploading(false);
   };
 
-  // Updated method to generate presigned URL using getSignedUrl from s3-request-presigner
   const getPresignedUrlForUpload = async (params) => {
     const command = new PutObjectCommand({
       Bucket: params.Bucket,
@@ -84,20 +80,18 @@ const FileUpload = () => {
     return url;
   };
 
-  // Function to manually close the component
   const closeComponent = () => {
     setIsVisible(false);
     setMessage('');
-    setSelectedFile(null); //HERE
-    setDownloadLink(''); // Reset the download link when the component is closed
+    setSelectedFile(null);
+    setDownloadLink('');
   };
 
-  // Function to toggle the visibility of the component
   const toggleVisibility = () => {
     setIsVisible((prev) => !prev);
     if (!isVisible) {
-        setMessage(''); // Reset the message when the component is opened again
-        setDownloadLink(''); // Reset the download link when the component is closed
+        setMessage('');
+        setDownloadLink('');
       }
     };
 
@@ -150,7 +144,7 @@ const FileUpload = () => {
           `}</style>
         </div>
       ) : (
-        <button onClick={toggleVisibility}>Select file to Upload</button> // Button to reopen the upload component
+        <button onClick={toggleVisibility}>Select file to Upload</button>
       )}
     </div>
   );
