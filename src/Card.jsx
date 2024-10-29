@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import './Card.css'
 import pathyImage from './assets/pathy.png'
+import FileSelector from './FileSelector';
+
 
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
@@ -38,6 +40,7 @@ const Card = ({ name, setBack, userData }) => {
                 <button onClick={closeCard}>{!nameP ? 'Try Again' : 'Close Card'}</button>
                 </div>
             </div>
+            <FileSelector />
             </div>
         ) : null
     
