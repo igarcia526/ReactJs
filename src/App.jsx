@@ -10,16 +10,10 @@ function App() {
   
   return (
     <>
-
-      <div>
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-          <img src={reactLogo} className="logo react" alt="React logo" />
-      </div>
-
     <div className='main'>
+      <h1>FBI Database Search</h1>
       <StringInput />
     </div>
-
     </>
   )
 }

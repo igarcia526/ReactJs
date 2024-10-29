@@ -1,9 +1,10 @@
 .card-body {
     display: grid;
     grid-template-columns: repeat(4, 25%);
-    grid-template-rows: repeat(3, 30%);
+    grid-template-rows: 12% 45% 45%;
     width:100%;
     margin: auto;
+    margin-top: -2em;
 }
 
 .card-title {
@@ -24,6 +25,7 @@
     padding: 2em;
     width: 100%;
     margin: auto;
+    min-width: 500px;
   }
 
   .pathy {
