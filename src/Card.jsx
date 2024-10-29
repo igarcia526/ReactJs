@@ -1,7 +1,12 @@
 import React, { useState } from 'react';
+import './Card.css'
+import pathyImage from './assets/pathy.png'
+import FileSelector from './FileSelector';
+
+
 
 /* eslint-disable react/prop-types */ // TODO: upgrade to latest eslint tooling
-const Card = ({ name, setBack }) => {
+const Card = ({ name, setBack, userData }) => {
   const [nameP, setnameP] = useState(name);
   const [cardShow, setcardShow] = useState(true);
 
@@ -18,10 +23,13 @@ const Card = ({ name, setBack }) => {
   
   return (
         cardShow ? (          
-            <div className="card" style={cardStyle}>
+            <div className="card" >
             <div className="card-body">
-                <h5 className="card-title">{nameP}</h5>
-                <p className="card-text">{!nameP ? 'Fill out the name first' : 'Your Hero is ' + nameP}</p>
+                <h5 className="card-title">{ nameP+ ' ' + userData.name.last}</h5>
+                <div className="card-image">
+                <img src={userData.picture.large} className="pathy" alt='image of pathfinder from Apex Legends'/>
+                </div>
+                <div className="card-hero-info">
                 {nameP ?
                 <>
                 <p>Job: {nameP == 'Nancy' ? nancyObj.job : 'Unemployed'}</p>
@@ -30,20 +38,13 @@ const Card = ({ name, setBack }) => {
                 null
                 }
                 <button onClick={closeCard}>{!nameP ? 'Try Again' : 'Close Card'}</button>
+                </div>
             </div>
+            <FileSelector />
             </div>
         ) : null
     
   );
 };
-
-const cardStyle = {
-    border: '1px solid #ccc',
-    padding: '16px',
-    borderRadius: '8px',
-    boxShadow: '2px 2px 12px rgba(0, 0, 0, 0.1)',
-    width: '300px',
-    margin: '16px auto',
-  };
 
 export default Card;

@@ -6,6 +6,7 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+  min-width: 500px;
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -29,6 +30,8 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #242424;
+  background: url(https://images.pexels.com/photos/1242348/pexels-photo-1242348.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1);
+  background-size: cover;
 }
 
 h1 {
