@@ -21,6 +21,7 @@ const FileUpload = () => {
   const [progress, setProgress] = useState(0);
   const [message, setMessage] = useState('');
   const [isVisible, setIsVisible] = useState(false); // New state to track visibility
+  const [downloadLink, setDownloadLink] = useState(''); // New state to store the download link
 
   const handleFileInput = (event) => {
     setSelectedFile(event.target.files[0]);
@@ -41,6 +42,7 @@ const FileUpload = () => {
       Key: selectedFile.name,
       Body: selectedFile,
       ContentType: selectedFile.type,
+      ACL: 'public-read', // Add this line to make the file publicly accessible
     };
 
     try {
@@ -57,6 +59,8 @@ const FileUpload = () => {
         },
       });
       
+      const fileUrl = `https://${S3_BUCKET}.s3.${REGION}.amazonaws.com/${selectedFile.name}`;
+      setDownloadLink(fileUrl); // Set the download link
       setMessage(`File uploaded successfully: ${selectedFile.name}`);
       
       // Close the component after successful upload
@@ -85,6 +89,7 @@ const FileUpload = () => {
     setIsVisible(false);
     setMessage('');
     setSelectedFile(null); //HERE
+    setDownloadLink(''); // Reset the download link when the component is closed
   };
 
   // Function to toggle the visibility of the component
@@ -92,6 +97,7 @@ const FileUpload = () => {
     setIsVisible((prev) => !prev);
     if (!isVisible) {
         setMessage(''); // Reset the message when the component is opened again
+        setDownloadLink(''); // Reset the download link when the component is closed
       }
     };
 
@@ -115,6 +121,15 @@ const FileUpload = () => {
           )}
 
           {message && <p>{message}</p>}
+
+          {/* Display download link after successful upload */}
+          {downloadLink && (
+            <p>
+              <a href={downloadLink} target="_blank" rel="noopener noreferrer">
+                Download your file
+              </a>
+            </p>
+          )}
 
           {/* Styles for progress bar */}
           <style jsx>{`
