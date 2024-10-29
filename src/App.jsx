@@ -12,7 +12,7 @@ function App() {
   return (
     <>
     <div className='main'>
-      <h1>FBI Database Search</h1>
+      
       <StringInput />
     </div>
     </>

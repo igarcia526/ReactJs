@@ -84,6 +84,7 @@ const FileUpload = () => {
   const closeComponent = () => {
     setIsVisible(false);
     setMessage('');
+    setSelectedFile(null); //HERE
   };
 
   // Function to toggle the visibility of the component
